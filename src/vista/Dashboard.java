@@ -1,6 +1,7 @@
 package vista;
 
 import BD.Conexion;
+import controlador.controlador_estudiante;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.sql.Connection;
@@ -21,12 +22,14 @@ public class Dashboard extends javax.swing.JFrame {
     EstudianteRequisitos pnl_datosRequisitos = new EstudianteRequisitos(this);
     EstudianteSustento pnl_datosSustento = new EstudianteSustento(this);
     CardLayout vista;
+    private controlador_estudiante controlador;
 
     public Dashboard() {
+        
         initComponents();
         conn = new Conexion();
         reg = conn.getConnection();
-
+        this.controlador = controlador_estudiante.getInstance();
         /*LocalDate now = LocalDate.now();
         int year = now.getYear();
         int dia = now.getDayOfMonth();
@@ -481,6 +484,7 @@ public class Dashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               
                 new Dashboard().setVisible(true);
             }
         });

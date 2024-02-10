@@ -107,11 +107,6 @@ public class login1 extends javax.swing.JFrame {
         txtpassword.setForeground(new java.awt.Color(255, 255, 255));
         txtpassword.setBorder(null);
         txtpassword.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtpassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpasswordActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 240, 30));
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,6 +133,7 @@ public class login1 extends javax.swing.JFrame {
         });
         jPanel2.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 216, 40, 40));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(25, 118, 211));
         jButton1.setText("LOGIN");
@@ -148,13 +144,18 @@ public class login1 extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Postular a Beca");
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 122, -1));
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 357, 122, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(199, 226, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("¿Eres estudiante?");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 360, 213, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 357, 213, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 420, 440));
 
@@ -195,9 +196,13 @@ public class login1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpasswordActionPerformed
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // Creamos una instancia de la vista principal de postulantes y cerramos el actual del login
+        Dashboard vistaPrincipal = new Dashboard();
+        vistaPrincipal.setVisible(true);
+        login1.this.dispose();
+        
+    }//GEN-LAST:event_jLabel13MouseClicked
 
     /**
      * @param args the command line arguments
