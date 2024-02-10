@@ -5,8 +5,12 @@
  */
 package vista;
 
+import controlador.controlador_estudiante;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import model.Estudiante;
 import vista.EstudianteDatosAcademicos;
 import vista.Dashboard.*;
 
@@ -26,8 +30,6 @@ public class EstudianteDatosPersonales extends javax.swing.JPanel {
         this.vistaPrincipal = vistaPrincipal;
         initComponents();
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,6 +109,11 @@ public class EstudianteDatosPersonales extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Siguiente");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         btn_siguiente_1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, 30));
 
         javax.swing.GroupLayout pnl_datosPersonalesLayout = new javax.swing.GroupLayout(pnl_datosPersonales);
@@ -170,7 +177,20 @@ public class EstudianteDatosPersonales extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_siguiente_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_siguiente_1MouseClicked
-        vistaPrincipal.mostrarPanel("datosAcademicos");
+        if (verificarCampos(txt_nombres, txt_edad, txt_correo, txt_dni)) {
+            String nombres = txt_nombres.getText();
+            int edad = Integer.parseInt(txt_edad.getText());
+            String email = txt_correo.getText();
+            int dni = Integer.parseInt(txt_dni.getText());
+
+            Estudiante datosEstudiante = controlador_estudiante.getInstance().getEstudianteActual();
+
+            datosEstudiante.setNombres_completos(nombres);
+            datosEstudiante.setEdad(edad);
+            datosEstudiante.setEmail(email);
+            datosEstudiante.setDNI(dni);
+            vistaPrincipal.mostrarPanel("datosAcademicos");
+        }
     }//GEN-LAST:event_btn_siguiente_1MouseClicked
 
     private void btn_siguiente_1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_siguiente_1MouseEntered
@@ -188,6 +208,42 @@ public class EstudianteDatosPersonales extends javax.swing.JPanel {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
 
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseClicked
+    private boolean verificarCampos(JTextField nombreCompletoField, JTextField edadField, JTextField correoField, JTextField dniField) {
+        // Verificar que el campo de nombre no esté vacío y que contenga texto válido (solo letras y espacios).
+        if (nombreCompletoField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese nombres completos válidos.", "Validación de campo", JOptionPane.ERROR_MESSAGE);
+            nombreCompletoField.requestFocus();
+            return false;
+        }
+
+        // Verificar que el campo de edad no esté vacío y contenga solo números.
+        if (edadField.getText().trim().isEmpty() || !edadField.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una edad válida.", "Validación de campo", JOptionPane.ERROR_MESSAGE);
+            edadField.requestFocus();
+            return false;
+        }
+
+        // Verificar que el correo electrónico no esté vacío y que tenga un formato válido.
+        if (correoField.getText().trim().isEmpty() || !correoField.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un correo electrónico válido.", "Validación de campo", JOptionPane.ERROR_MESSAGE);
+            correoField.requestFocus();
+            return false;
+        }
+
+        // Verificar que el DNI no esté vacío y que tenga un formato válido (solo números y una longitud específica, por ejemplo 8 dígitos).
+        if (dniField.getText().trim().isEmpty() || !dniField.getText().matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un DNI válido.", "Validación de campo", JOptionPane.ERROR_MESSAGE);
+            dniField.requestFocus();
+            return false;
+        }
+
+        // Todos los campos son válidos.
+        return true;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

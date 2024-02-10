@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.controlador_estudiante;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.TextField;
@@ -391,6 +392,10 @@ public class EstudianteSustento extends javax.swing.JPanel {
         
         // metodo para guardar todos los datos
         //Finalizar el registro
+        
+        controlador_estudiante.getInstance().finalizarYGuardarPersona();
+        System.out.println("Lista");
+        controlador_estudiante.getInstance().getLista().imprimir();
         System.exit(0);
     }//GEN-LAST:event_btn_finalizarMouseClicked
 

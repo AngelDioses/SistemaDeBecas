@@ -1,11 +1,10 @@
 
 package model;
 
-
 public class Persona {
     private String nombres_completos;
     private int edad;
-    private int DNI; 
+    private int DNI;
     private int nro_telefono;
 
     public Persona(String nombres_completos, int edad, int DNI, int nro_telefono) {
@@ -15,7 +14,6 @@ public class Persona {
         this.nro_telefono = nro_telefono;
     }
 
-    
     /**
      * @return the nombres_completos
      */
@@ -71,5 +69,14 @@ public class Persona {
     public void setNro_telefono(int nro_telefono) {
         this.nro_telefono = nro_telefono;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombres_completos='" + nombres_completos + '\'' +
+                ", edad=" + edad +
+                ", DNI=" + DNI +
+                ", nro_telefono=" + nro_telefono +
+                '}';
+    }
 }

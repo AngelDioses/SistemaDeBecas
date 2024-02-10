@@ -5,6 +5,10 @@
  */
 package vista;
 
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author ASUS ROG
@@ -233,7 +237,9 @@ public class EstudianteDatosAcademicos extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void btn_siguiente_2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_siguiente_2MouseClicked
-         vistaPrincipal.mostrarPanel("datosRequisitos");
+        if (verificarCampos(txt_ciclo, chk_alumnoObservado, chk_alumnoObservado, txt_codigo, txt_ponderado)) {
+            vistaPrincipal.mostrarPanel("datosRequisitos");
+        }
     }//GEN-LAST:event_btn_siguiente_2MouseClicked
 
     private void btn_siguiente_2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_siguiente_2MouseEntered
@@ -245,8 +251,41 @@ public class EstudianteDatosAcademicos extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_siguiente_2MouseExited
 
     private void btn_siguiente_2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_siguiente_2MousePressed
-        vistaPrincipal.mostrarPanel("datosRequisitos");
+        if (verificarCampos(txt_ciclo, chk_alumnoObservado, chk_alumnoObservado, txt_codigo, txt_ponderado)) {
+            vistaPrincipal.mostrarPanel("datosRequisitos");
+        }
     }//GEN-LAST:event_btn_siguiente_2MousePressed
+    private boolean verificarCampos(JTextField cicloField, JCheckBox siObservado, JCheckBox noObservado, JTextField codigoEstudianteField, JTextField promedioField) {
+        // Verificar que el campo de ciclo no esté vacío.
+        if (cicloField.getText().trim().isEmpty()|| !cicloField.getText().matches("\\d{1}")) {
+            JOptionPane.showMessageDialog(this, "Por favor, indique en qué ciclo se encuentra.", "Validación de campo", JOptionPane.ERROR_MESSAGE);
+            cicloField.requestFocus();
+            return false;
+        }
+
+        // Verificar que se haya seleccionado si el estudiante es observado.
+        if (!siObservado.isSelected() && !noObservado.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Por favor, indique si es un alumno observado.", "Validación de campo", JOptionPane.ERROR_MESSAGE);
+           
+            return false;
+        }
+
+        // Verificar que el campo del código de estudiante no esté vacío y que tenga un formato válido 
+        if (codigoEstudianteField.getText().trim().isEmpty() || !codigoEstudianteField.getText().matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un código de estudiante válido.", "Validación de campo", JOptionPane.ERROR_MESSAGE);
+            codigoEstudianteField.requestFocus();
+            return false;
+        }
+
+        // Verificar que el campo de promedio ponderado no esté vacío y que sea un número válido (por ejemplo, un decimal).
+        if (promedioField.getText().trim().isEmpty() || !promedioField.getText().matches("\\d+(\\.\\d+)?")) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un promedio ponderado válido.", "Validación de campo", JOptionPane.ERROR_MESSAGE);
+            promedioField.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
