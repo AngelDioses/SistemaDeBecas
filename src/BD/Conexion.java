@@ -1,7 +1,7 @@
 
 package BD;
 
-//Hola
+//Hola, comentario de prueba
 
 
 import java.sql.Connection;
