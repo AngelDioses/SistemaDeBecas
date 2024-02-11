@@ -8,18 +8,16 @@ public class Estudiante extends Persona {
     private int ciclo;
     private boolean esObservado;
     private int codigo;
-    private int clasificacion_socioeconomica;
+    private String clasificacion_socioeconomica;
     private String actividad_extra;
-    private int situacion_especial;
-
-    public Estudiante(String nombres_completos, int edad, int DNI, int nro_telefono) {
-        super(nombres_completos, edad, DNI, nro_telefono);
-    }
+    private boolean esDiscapacitado;
+    private boolean esPrimerMiembroenU;
+    private boolean esComunidadIndigena;
 
     public Estudiante(String email, double ponderado, int ciclo, boolean esObservado, int codigo,
-            int clasificacion_socioeconomica, String actividad_extra, int situacion_especial, String nombres_completos,
-            int edad, int DNI, int nro_telefono) {
-        super(nombres_completos, edad, DNI, nro_telefono);
+            String clasificacion_socioeconomica, String actividad_extra, boolean esDiscapacitado,
+            boolean esPrimerMiembroenU, boolean esComunidadIndigena, String nombres_completos, int edad, int DNI) {
+        super(nombres_completos, edad, DNI);
         this.email = email;
         this.ponderado = ponderado;
         this.ciclo = ciclo;
@@ -27,7 +25,25 @@ public class Estudiante extends Persona {
         this.codigo = codigo;
         this.clasificacion_socioeconomica = clasificacion_socioeconomica;
         this.actividad_extra = actividad_extra;
-        this.situacion_especial = situacion_especial;
+        this.esDiscapacitado = esDiscapacitado;
+        this.esPrimerMiembroenU = esPrimerMiembroenU;
+        this.esComunidadIndigena = esComunidadIndigena;
+    }
+
+    public Estudiante() {
+        super("", 0, 0);
+
+        this.email = "";
+        this.ponderado = 0.0;
+        this.ciclo = 0;
+        this.esObservado = false;
+        this.codigo = 0;
+        this.clasificacion_socioeconomica = "";
+        this.actividad_extra = "";
+        this.esDiscapacitado = false;
+        this.esPrimerMiembroenU = false;
+        this.esComunidadIndigena = false;
+
     }
 
     public String getEmail() {
@@ -70,11 +86,11 @@ public class Estudiante extends Persona {
         this.codigo = codigo;
     }
 
-    public int getClasificacion_socioeconomica() {
+    public String getClasificacion_socioeconomica() {
         return clasificacion_socioeconomica;
     }
 
-    public void setClasificacion_socioeconomica(int clasificacion_socioeconomica) {
+    public void setClasificacion_socioeconomica(String clasificacion_socioeconomica) {
         this.clasificacion_socioeconomica = clasificacion_socioeconomica;
     }
 
@@ -86,17 +102,33 @@ public class Estudiante extends Persona {
         this.actividad_extra = actividad_extra;
     }
 
-    public int getSituacion_especial() {
-        return situacion_especial;
+    public boolean isEsDiscapacitado() {
+        return esDiscapacitado;
     }
 
-    public void setSituacion_especial(int situacion_especial) {
-        this.situacion_especial = situacion_especial;
+    public void setEsDiscapacitado(boolean esDiscapacitado) {
+        this.esDiscapacitado = esDiscapacitado;
+    }
+
+    public boolean isEsPrimerMiembroenU() {
+        return esPrimerMiembroenU;
+    }
+
+    public void setEsPrimerMiembroenU(boolean esPrimerMiembroenU) {
+        this.esPrimerMiembroenU = esPrimerMiembroenU;
+    }
+
+    public boolean isEsComunidadIndigena() {
+        return esComunidadIndigena;
+    }
+
+    public void setEsComunidadIndigena(boolean esComunidadIndigena) {
+        this.esComunidadIndigena = esComunidadIndigena;
     }
 
     @Override
     public String toString() {
-        return "Estudiante{" +
+        return "Estudiante{" + " " + super.toString() +
                 "email='" + email + '\'' +
                 ", ponderado=" + ponderado +
                 ", ciclo=" + ciclo +
@@ -104,8 +136,10 @@ public class Estudiante extends Persona {
                 ", codigo=" + codigo +
                 ", clasificacion_socioeconomica=" + clasificacion_socioeconomica +
                 ", actividad_extra='" + actividad_extra + '\'' +
-                ", situacion_especial=" + situacion_especial +
-                "} " + super.toString();
+                ", esDiscapacitado=" + esDiscapacitado +
+                ", esPrimerMiembroenU=" + esPrimerMiembroenU +
+                ", esComunidadIndigena=" + esComunidadIndigena +
+                '}';
     }
 
 }

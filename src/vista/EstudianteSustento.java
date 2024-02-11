@@ -393,9 +393,9 @@ public class EstudianteSustento extends javax.swing.JPanel {
         // metodo para guardar todos los datos
         //Finalizar el registro
         
-        controlador_estudiante.getInstance().finalizarYGuardarPersona();
+        
         System.out.println("Lista");
-        controlador_estudiante.getInstance().getLista().imprimir();
+        vistaPrincipal.getLista().imprimir();
         System.exit(0);
     }//GEN-LAST:event_btn_finalizarMouseClicked
 
