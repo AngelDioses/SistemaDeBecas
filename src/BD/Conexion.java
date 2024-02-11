@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-// Conexion a base de datos
+// Conexion a la base de datos
 public class Conexion {
     private static Connection conn;
     private static final String driver = "com.mysql.jdbc.Driver";
