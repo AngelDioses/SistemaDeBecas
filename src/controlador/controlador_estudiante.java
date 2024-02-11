@@ -1,63 +1,155 @@
 package controlador;
 
-import estructura.ListaEnlazada;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import model.Estudiante;
+import vista.Dashboard;
 
 public class controlador_estudiante {
 
-    private Estudiante estudianteActual;
-    private ListaEnlazada<Estudiante> listaEstudiantes;
-    private static controlador_estudiante instancia;
+    private Estudiante estudiante;
+    private Dashboard vistaPrincipal;
 
-    private controlador_estudiante() {
-        listaEstudiantes = new ListaEnlazada<>();
-        estudianteActual = new Estudiante("", 0.0, 0, false, 0, 0, "", 0, "", 0, 0, 0);
+    public controlador_estudiante(Dashboard dashboard) {
+        this.vistaPrincipal = dashboard;
+
     }
 
-    public static controlador_estudiante getInstance() {
-        if (instancia == null) {
-            instancia = new controlador_estudiante();
+    public void actualizarDatosRequisito(boolean esPobre, boolean esNoPobre, boolean esExtremaPobreza,
+            boolean esDiscapacitado, boolean esPrimerMiembroU, boolean esComunidadIndigena, String actividadesExtra) {
+
+        // Obtener la instancia actual del estudiante y actualizarla
+        Estudiante datosEstudiante = vistaPrincipal.getEstudiante();
+
+        // Actualizar el objeto estudiante con la nueva información
+        datosEstudiante.setClasificacion_socioeconomica(
+                esPobre ? "Pobre" : esNoPobre ? "No pobre" : esExtremaPobreza ? "Extrema pobreza" : "");
+        datosEstudiante.setEsDiscapacitado(esDiscapacitado);
+        datosEstudiante.setEsPrimerMiembroenU(esPrimerMiembroU);
+        datosEstudiante.setEsComunidadIndigena(esComunidadIndigena);
+        datosEstudiante.setActividad_extra(actividadesExtra);
+
+        // Cambiar al panel de 'datosSustento'
+        vistaPrincipal.mostrarPanel("datosSustento");
+    }
+
+    public void actualizarDatosPersonales(JTextField nombreCompletoField, JTextField edadField, JTextField correoField,
+            JTextField dniField) {
+        if (verificarCamposPersonales(nombreCompletoField, edadField, correoField, dniField)) {
+            try {
+                String nombres = nombreCompletoField.getText();
+                int edad = Integer.parseInt(edadField.getText());
+                String email = correoField.getText();
+                int dni = Integer.parseInt(dniField.getText());
+                Estudiante datosEstudiante = vistaPrincipal.getEstudiante();
+
+                vistaPrincipal.getLista().añadir(datosEstudiante);
+
+                datosEstudiante.setNombres_completos(nombres);
+                datosEstudiante.setEdad(edad);
+                datosEstudiante.setEmail(email);
+                datosEstudiante.setDNI(dni);
+
+                System.out.println("Estudiante actualizado: ");
+                vistaPrincipal.getLista().imprimir();
+
+                // Cambiar al siguiente panel
+                vistaPrincipal.mostrarPanel("datosAcademicos");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this.vistaPrincipal, "Ingrese los datos en el formato correcto.");
+            }
         }
-        return instancia;
+
     }
 
-    // Métodos para manejar el estudianteActual
-    public Estudiante getEstudianteActual() {
-        return estudianteActual;
-    }
+    public void actualizarDatosAcademicos(JTextField cicloField, JRadioButton siObservado, JRadioButton noObservado,
+            JTextField codigoEstudianteField, JTextField promedioField) {
+        if (verificarCamposAcademicos(cicloField, siObservado, noObservado, codigoEstudianteField, promedioField)) {
+            try {
+                int ciclo = Integer.parseInt(cicloField.getText());
+                boolean observado = siObservado.isSelected();
+                int codigo = Integer.parseInt(codigoEstudianteField.getText());
+                double ponderado = Double.parseDouble(promedioField.getText());
 
-    public void finalizarYGuardarPersona() {
-        listaEstudiantes.añadir(estudianteActual);
-        estudianteActual = null; // Preparar para la siguiente persona
-        listaEstudiantes.imprimir();
-    }
-    public ListaEnlazada<Estudiante> getLista(){
-        return listaEstudiantes;
-    }
+                Estudiante datosEstudiante = vistaPrincipal.getEstudiante();
 
-    public void actualizarDatosEstudiante(Estudiante datosEstudiante) {
-        if (estudianteActual == null) {
-            estudianteActual = datosEstudiante;
-        } else {
-            // Suponiendo que datosEstudiante contiene los datos actualizados para los campos específicos
-            if (datosEstudiante.getNombres_completos() != null) {
-                estudianteActual.setNombres_completos(datosEstudiante.getNombres_completos());
-            }
-            if (datosEstudiante.getEdad() != 0.0) {
-                estudianteActual.setEdad(datosEstudiante.getEdad());
-            }
-            if (datosEstudiante.getEmail() != null) {
-                estudianteActual.setEmail(datosEstudiante.getEmail());
+                datosEstudiante.setCiclo(ciclo);
+                datosEstudiante.setEsObservado(observado);
+                datosEstudiante.setCodigo(codigo);
+                datosEstudiante.setPonderado(ponderado);
 
-                if (datosEstudiante.getDNI() != 0.0) {
-                    estudianteActual.setDNI(datosEstudiante.getDNI());
-                }
+                // Depuramos si es que funciona
+                System.out.println("Estudiante actualizado: ");
+                vistaPrincipal.getLista().imprimir();
 
-                // Y así sucesivamente para cada campo que pueda haber sido actualizado
-                // ...
+                // Cambiar al siguiente panel
+                vistaPrincipal.mostrarPanel("datosRequisitos");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this.vistaPrincipal,
+                        "Por favor, asegúrese de que todos los campos numéricos tengan el formato correcto.");
             }
         }
-        
+
     }
-    
+
+    private boolean verificarCamposAcademicos(JTextField cicloField, JRadioButton siObservado, JRadioButton noObservado,
+            JTextField codigoEstudianteField, JTextField promedioField) {
+        // Validación para el ciclo
+        if (!esCampoTextoValido(cicloField, "\\d+", "Por favor, ingrese el ciclo académico válido.")) {
+            return false;
+        }
+
+        // Validación para el estado de observación
+        if (!siObservado.isSelected() && !noObservado.isSelected()) {
+            JOptionPane.showMessageDialog(vistaPrincipal, "Por favor, indique si es un alumno observado o no.",
+                    "Validación de campo", JOptionPane.ERROR_MESSAGE);
+            return false; // No es necesario enfocar un campo específico aquí
+        }
+
+        // Validación para el código del estudiante , 8 en UNMSM
+        if (!esCampoTextoValido(codigoEstudianteField, "\\d{8}",
+                "Por favor, ingrese un código de estudiante válido.")) {
+            return false;
+        }
+
+        // Validación para el promedio ponderado
+        if (!esCampoTextoValido(promedioField, "\\d+(\\.\\d+)?", "Por favor, ingrese un promedio ponderado válido.")) {
+            return false;
+        }
+
+        // Si todas las validaciones son exitosas
+        return true;
+    }
+
+    private boolean esCampoTextoValido(JTextField campo, String regex, String mensajeError) {
+        String texto = campo.getText().trim();
+        if (!texto.matches(regex)) {
+            JOptionPane.showMessageDialog(this.vistaPrincipal, mensajeError, "Validación de campo",
+                    JOptionPane.ERROR_MESSAGE);
+            campo.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean verificarCamposPersonales(JTextField nombreCompletoField, JTextField edadField,
+            JTextField correoField,
+            JTextField dniField) {
+        if (!esCampoTextoValido(nombreCompletoField, "[a-zA-Z\\s]+", "Por favor, ingrese nombres completos válidos.")) {
+            return false;
+        }
+        if (!esCampoTextoValido(edadField, "\\d+", "Por favor, ingrese una edad válida.")) {
+            return false;
+        }
+        if (!esCampoTextoValido(correoField, "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$",
+                "Por favor, ingrese un correo electrónico válido.")) {
+            return false;
+        }
+        if (!esCampoTextoValido(dniField, "\\d{8}", "Por favor, ingrese un DNI válido.")) {
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -5,13 +5,13 @@ public class Persona {
     private String nombres_completos;
     private int edad;
     private int DNI;
-    private int nro_telefono;
+  
 
-    public Persona(String nombres_completos, int edad, int DNI, int nro_telefono) {
+    public Persona(String nombres_completos, int edad, int DNI) {
         this.nombres_completos = nombres_completos;
         this.edad = edad;
         this.DNI = DNI;
-        this.nro_telefono = nro_telefono;
+    
     }
 
     /**
@@ -59,16 +59,8 @@ public class Persona {
     /**
      * @return the nro_telefono
      */
-    public int getNro_telefono() {
-        return nro_telefono;
-    }
+  
 
-    /**
-     * @param nro_telefono the nro_telefono to set
-     */
-    public void setNro_telefono(int nro_telefono) {
-        this.nro_telefono = nro_telefono;
-    }
 
     @Override
     public String toString() {
@@ -76,7 +68,6 @@ public class Persona {
                 "nombres_completos='" + nombres_completos + '\'' +
                 ", edad=" + edad +
                 ", DNI=" + DNI +
-                ", nro_telefono=" + nro_telefono +
                 '}';
     }
 }
