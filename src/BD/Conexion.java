@@ -8,12 +8,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// Conexion a base de datos
 public class Conexion {
     private static Connection conn;
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
     private static final String pass = "123456";
-    private static final String db = "libreria;
+    private static final String db = "library";
     private static final String url = "jdbc:mysql://localhost/"+db+"";
     
     public Conexion(){
