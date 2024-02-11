@@ -13,7 +13,7 @@ public class Conexion {
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
     private static final String pass = "123456";
-    private static final String db = "libreria;
+    private static final String db = "library;
     private static final String url = "jdbc:mysql://localhost/"+db+"";
     
     public Conexion(){
