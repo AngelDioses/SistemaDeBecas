@@ -58,28 +58,25 @@ public class EstudianteRequisitos extends javax.swing.JPanel {
         txt_cIndigenas = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_actividadE = new javax.swing.JTextArea();
+        txt_primerMiembroU1 = new javax.swing.JCheckBox();
 
         pnl_datosPersonales.setBackground(new java.awt.Color(255, 255, 255));
         pnl_datosPersonales.setPreferredSize(new java.awt.Dimension(0, 539));
 
         jLabel1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Marca cualquier situación especial que aplique a tu caso");
 
         jLabel6.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText(" hayas participado (dentro o fuera de la UNMSM).");
 
         jLabel8.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("¿Perteneces a alguna de las siguientes clasificaciones socioeconómicas?");
 
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Enumera cualquier actividad extracurricular, voluntariado o proyecto comunitario en el que");
 
         btn_siguiente_1.setBackground(new java.awt.Color(21, 101, 192));
-        btn_siguiente_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_siguiente_1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_siguiente_1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_siguiente_1MouseClicked(evt);
@@ -112,29 +109,24 @@ public class EstudianteRequisitos extends javax.swing.JPanel {
         chk_Pobreza.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(chk_Pobreza);
         chk_Pobreza.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        chk_Pobreza.setForeground(new java.awt.Color(0, 0, 0));
         chk_Pobreza.setText("Pobre");
 
         chk_NPobre.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(chk_NPobre);
         chk_NPobre.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        chk_NPobre.setForeground(new java.awt.Color(0, 0, 0));
         chk_NPobre.setText("No pobre");
 
         chk_EPobreza.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(chk_EPobreza);
         chk_EPobreza.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        chk_EPobreza.setForeground(new java.awt.Color(0, 0, 0));
         chk_EPobreza.setText(" Extrema pobreza");
 
         txt_EDiscapacidad.setBackground(new java.awt.Color(255, 255, 255));
         txt_EDiscapacidad.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        txt_EDiscapacidad.setForeground(new java.awt.Color(0, 0, 0));
         txt_EDiscapacidad.setText("Estudiante con discapacidad");
 
         txt_primerMiembroU.setBackground(new java.awt.Color(255, 255, 255));
         txt_primerMiembroU.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        txt_primerMiembroU.setForeground(new java.awt.Color(0, 0, 0));
         txt_primerMiembroU.setText(" Primer miembro de la familia en asistir a la universidad ");
         txt_primerMiembroU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,12 +136,20 @@ public class EstudianteRequisitos extends javax.swing.JPanel {
 
         txt_cIndigenas.setBackground(new java.awt.Color(255, 255, 255));
         txt_cIndigenas.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        txt_cIndigenas.setForeground(new java.awt.Color(0, 0, 0));
         txt_cIndigenas.setText(" Proveniente de comunidades indígenas o remotas ");
 
         txt_actividadE.setColumns(20);
         txt_actividadE.setRows(5);
         jScrollPane1.setViewportView(txt_actividadE);
+
+        txt_primerMiembroU1.setBackground(new java.awt.Color(255, 255, 255));
+        txt_primerMiembroU1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txt_primerMiembroU1.setText("Ninguno");
+        txt_primerMiembroU1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_primerMiembroU1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_datosPersonalesLayout = new javax.swing.GroupLayout(pnl_datosPersonales);
         pnl_datosPersonales.setLayout(pnl_datosPersonalesLayout);
@@ -173,7 +173,8 @@ public class EstudianteRequisitos extends javax.swing.JPanel {
                             .addComponent(txt_primerMiembroU)
                             .addGroup(pnl_datosPersonalesLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_primerMiembroU1)))
                     .addGroup(pnl_datosPersonalesLayout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(chk_EPobreza)
@@ -181,7 +182,7 @@ public class EstudianteRequisitos extends javax.swing.JPanel {
                         .addComponent(chk_Pobreza)
                         .addGap(77, 77, 77)
                         .addComponent(chk_NPobre)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         pnl_datosPersonalesLayout.setVerticalGroup(
             pnl_datosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +214,9 @@ public class EstudianteRequisitos extends javax.swing.JPanel {
                         .addComponent(txt_cIndigenas)
                         .addGap(18, 18, 18)
                         .addComponent(txt_primerMiembroU)
-                        .addContainerGap(74, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_primerMiembroU1)
+                        .addContainerGap(42, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -227,6 +230,10 @@ public class EstudianteRequisitos extends javax.swing.JPanel {
             .addComponent(pnl_datosPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txt_primerMiembroU1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_primerMiembroU1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_primerMiembroU1ActionPerformed
 
     private void btn_siguiente_1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btn_siguiente_1MouseClicked
 
@@ -281,5 +288,6 @@ public class EstudianteRequisitos extends javax.swing.JPanel {
     private javax.swing.JTextArea txt_actividadE;
     private javax.swing.JCheckBox txt_cIndigenas;
     private javax.swing.JCheckBox txt_primerMiembroU;
+    private javax.swing.JCheckBox txt_primerMiembroU1;
     // End of variables declaration//GEN-END:variables
 }
