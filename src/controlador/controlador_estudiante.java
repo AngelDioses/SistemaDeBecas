@@ -1,21 +1,33 @@
 package controlador;
 
+import java.awt.Desktop;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Estudiante;
-import vista.Dashboard;
+import vista_postulante.Dashboard;
 
 public class controlador_estudiante {
 
     private Estudiante estudiante;
     private Dashboard vistaPrincipal;
-
+    private String ruta;
+    
+    /* Metodos y constructores para controlar la vista */
+    
     public controlador_estudiante(Dashboard dashboard) {
         this.vistaPrincipal = dashboard;
 
     }
-
+    
     public void actualizarDatosRequisito(boolean esPobre, boolean esNoPobre, boolean esExtremaPobreza,
             boolean esDiscapacitado, boolean esPrimerMiembroU, boolean esComunidadIndigena, String actividadesExtra) {
 
@@ -30,8 +42,7 @@ public class controlador_estudiante {
         datosEstudiante.setEsComunidadIndigena(esComunidadIndigena);
         datosEstudiante.setActividad_extra(actividadesExtra);
 
-        // Cambiar al panel de 'datosSustento'
-        vistaPrincipal.mostrarPanel("datosSustento");
+        
     }
 
     public void actualizarDatosPersonales(JTextField nombreCompletoField, JTextField edadField, JTextField correoField,
@@ -83,8 +94,7 @@ public class controlador_estudiante {
                 System.out.println("Estudiante actualizado: ");
                 vistaPrincipal.getLista().imprimir();
 
-                // Cambiar al siguiente panel
-                vistaPrincipal.mostrarPanel("datosRequisitos");
+                
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this.vistaPrincipal,
                         "Por favor, asegúrese de que todos los campos numéricos tengan el formato correcto.");
@@ -151,5 +161,21 @@ public class controlador_estudiante {
         }
         return true;
     }
-
+    
+        
+     public void abrirPDF(Estudiante estudiante) {
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File("C:\\Users\\ASUS ROG\\Desktop\\Reportes\\"+estudiante.getCodigo()+"_.pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                
+                JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo: " + ex.getMessage());
+            }
+        }
+    }
+     // Método para obtener la ruta
+    public String getRuta() {
+        return ruta;
+    }
 }

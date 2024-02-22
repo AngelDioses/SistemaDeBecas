@@ -1,6 +1,9 @@
 
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Estudiante extends Persona {
 
     private String email;
@@ -13,10 +16,29 @@ public class Estudiante extends Persona {
     private boolean esDiscapacitado;
     private boolean esPrimerMiembroenU;
     private boolean esComunidadIndigena;
-
-    public Estudiante(String email, double ponderado, int ciclo, boolean esObservado, int codigo,
-            String clasificacion_socioeconomica, String actividad_extra, boolean esDiscapacitado,
-            boolean esPrimerMiembroenU, boolean esComunidadIndigena, String nombres_completos, int edad, int DNI) {
+    private double puntuacion;
+    private int id;
+    private String reporte;
+    private String estado;
+    
+    public Estudiante(String nombres_completos, int codigo, double puntuacion) {
+        super(nombres_completos);
+        this.codigo = codigo;
+        this.puntuacion = puntuacion;
+    }
+    public Estudiante(int codigo, double puntuacion, String reporte, String nombres_completos) {
+        super(nombres_completos);
+        this.codigo = codigo;
+        this.puntuacion = puntuacion;
+        this.reporte = reporte;
+    }
+    public Estudiante(String nombres, int codigo, double puntuacion, String estado) {
+        super(nombres);
+        this.codigo = codigo;
+        this.puntuacion = puntuacion;
+        this.estado = estado;
+    }
+    public Estudiante(String email, double ponderado, int ciclo, boolean esObservado, int codigo, String clasificacion_socioeconomica, String actividad_extra, boolean esDiscapacitado, boolean esPrimerMiembroenU, boolean esComunidadIndigena, double puntuacion, String nombres_completos, int edad, int DNI) {
         super(nombres_completos, edad, DNI);
         this.email = email;
         this.ponderado = ponderado;
@@ -28,8 +50,11 @@ public class Estudiante extends Persona {
         this.esDiscapacitado = esDiscapacitado;
         this.esPrimerMiembroenU = esPrimerMiembroenU;
         this.esComunidadIndigena = esComunidadIndigena;
+        this.puntuacion = puntuacion;
     }
-
+    
+   
+    
     public Estudiante() {
         super("", 0, 0);
 
@@ -43,7 +68,34 @@ public class Estudiante extends Persona {
         this.esDiscapacitado = false;
         this.esPrimerMiembroenU = false;
         this.esComunidadIndigena = false;
+        this.puntuacion = 0;
+        this.estado = "Pendiente";
 
+    }
+
+    public String getReporte() {
+        return reporte;
+    }
+
+    public void setReporte(String reporte) {
+        this.reporte = reporte;
+    }
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public double getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(double puntuacion) {
+        this.puntuacion = puntuacion;
     }
 
     public String getEmail() {
@@ -126,6 +178,17 @@ public class Estudiante extends Persona {
         this.esComunidadIndigena = esComunidadIndigena;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
+ 
+    
     @Override
     public String toString() {
         return "Estudiante{" + " " + super.toString() +
@@ -141,5 +204,6 @@ public class Estudiante extends Persona {
                 ", esComunidadIndigena=" + esComunidadIndigena +
                 '}';
     }
+    
 
 }

@@ -14,6 +14,11 @@ public class Persona {
     
     }
 
+    public Persona( String nombres_completos) {
+       
+        this.nombres_completos = nombres_completos;
+    }
+
     /**
      * @return the nombres_completos
      */
