@@ -23,9 +23,9 @@ public class PDFCombinador {
             
             PDFMergerUtility combinador = new PDFMergerUtility();
             //Seleccionamos la ruta en la que se guardara el documento combinado
-            combinador.setDestinationFileName("C:\\Users\\ASUS ROG\\Desktop\\Reportes\\" + estudiante.getCodigo() + "_.pdf");
+            combinador.setDestinationFileName("C:\\Users\\angel\\Desktop\\Reportes\\" + estudiante.getCodigo() + "_.pdf");
             //Guardamos la ruta del reporte en pdf generado del estudiante
-            File ruta1 = new File("C:\\Users\\ASUS ROG\\Desktop\\Reportes\\" + estudiante.getCodigo() + ".pdf");
+            File ruta1 = new File("C:\\Users\\angel\\Desktop\\Reportes\\" + estudiante.getCodigo() + ".pdf");
             //Antes de iterar con la ayuda de la listaenlazada insertaremos el reporte del estudiante
             combinador.addSource(ruta1);
 

@@ -166,7 +166,7 @@ public class controlador_estudiante {
      public void abrirPDF(Estudiante estudiante) {
         if (Desktop.isDesktopSupported()) {
             try {
-                File myFile = new File("C:\\Users\\ASUS ROG\\Desktop\\Reportes\\"+estudiante.getCodigo()+"_.pdf");
+                File myFile = new File("C:\\Users\\angel\\Desktop\\Reportes\\"+estudiante.getCodigo()+"_.pdf");
                 Desktop.getDesktop().open(myFile);
             } catch (IOException ex) {
                 

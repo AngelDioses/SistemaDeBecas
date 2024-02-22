@@ -112,11 +112,11 @@ public class PostulanteEntrevista3 extends javax.swing.JPanel {
         ResumenPDF generador = new ResumenPDF(entrevista);
 
         //Asignamos la ruta en el que guardaremos los pdfs
-        String rutaEstudiante = "C:\\Users\\ASUS ROG\\Desktop\\Entrevista\\" + estudiante.getCodigo();
+        String rutaEstudiante = "C:\\Users\\angel\\Desktop\\Entrevista\\" + estudiante.getCodigo();
           
         //Generamos el .tex con el metodo generarpdf
         generador.generarPDFEntrevista(rutaEstudiante + ".tex", entrevista,
-                 "C:\\Users\\ASUS ROG\\Desktop\\Entrevista", estudiante); //Es necesario instalar el MiKTexT
+                 "C:\\Users\\angel\\Desktop\\Entrevista", estudiante); //Es necesario instalar el MiKTexT
 
     }
 

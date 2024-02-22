@@ -94,7 +94,7 @@ public class PostulanteControlador {
     int nombreArchivo = estudiante.getCodigo(); // o getNombres_completos(), dependiendo de tu estructura
   
     
-    String rutaPDF = "C:\\Users\\ASUS ROG\\Desktop\\Entrevista\\" + nombreArchivo + ".pdf";
+    String rutaPDF = "C:\\Users\\angel\\Desktop\\Reportes\\" + nombreArchivo + ".pdf";
     
     try {
         File archivoPDF = new File(rutaPDF);

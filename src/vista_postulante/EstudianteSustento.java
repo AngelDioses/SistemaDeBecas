@@ -109,10 +109,10 @@ public class EstudianteSustento extends javax.swing.JPanel {
             PDFCombinador combinador = new PDFCombinador();
             //Asignamos la ruta en el que guardaremos los pdfs
 
-            String rutaEstudiante = "C:\\Users\\ASUS ROG\\Desktop\\Reportes\\" + estudiante.getCodigo(); //Ajustar ruta segun a donde quieras que se guarden
+            String rutaEstudiante = "C:\\Users\\angel\\Desktop\\Reportes\\" + estudiante.getCodigo(); //Ajustar ruta segun a donde quieras que se guarden
 
             //Generamos el .tex con el metodo generarpdf
-            generador.generarPdfEstudiante(rutaEstudiante + ".tex", estudiante, "C:\\Users\\ASUS ROG\\Desktop\\Reportes"); //Es necesario instalar el MiKTexT
+            generador.generarPdfEstudiante(rutaEstudiante + ".tex", estudiante, "C:\\Users\\angel\\Desktop\\Reportes"); //Es necesario instalar el MiKTexT
 
             //Combinamos los pdfs
             combinador.combinarPDFsDirectamente(rutasPDF, estudiante);
