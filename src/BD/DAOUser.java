@@ -9,7 +9,7 @@ public class DAOUser {
     //Modificar deacuerdo a tu configuracion del mysql
     private String jdbcURL = "jdbc:mysql://localhost:3306/Sistema_Becas";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "123456";
+    private String jdbcPassword = "12345";
 
     //Metodo para validar los datos ingresados por el usuario
     public boolean validarUsuario(String username, String password, String sql_table) {
