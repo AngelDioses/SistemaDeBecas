@@ -28,6 +28,10 @@ public class ControlPostulantes1 extends javax.swing.JFrame {
      * Creates new form ControlPostulantes1
      */
     VisualizarPostulantes pnl_vizualizarP = new VisualizarPostulantes(this);
+
+    /**
+     *
+     */
     ControlSeleccionados controlSeleccionados = new ControlSeleccionados(this);
     CardLayout vista;
 

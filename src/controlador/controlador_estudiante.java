@@ -15,19 +15,33 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Estudiante;
 import vista_postulante.Dashboard;
 
+/**
+ * Clase controladora para gestionar las operaciones relacionadas con los estudiantes en la interfaz gráfica.
+ */
 public class controlador_estudiante {
 
     private Estudiante estudiante;
     private Dashboard vistaPrincipal;
     private String ruta;
-    
-    /* Metodos y constructores para controlar la vista */
-    
+
+    /**
+     * Constructor para controlar la vista del dashboard.
+     * @param dashboard El dashboard principal.
+     */
     public controlador_estudiante(Dashboard dashboard) {
         this.vistaPrincipal = dashboard;
-
     }
-    
+
+    /**
+     * Actualiza los datos relacionados con los requisitos del estudiante.
+     * @param esPobre Indica si el estudiante es pobre.
+     * @param esNoPobre Indica si el estudiante no es pobre.
+     * @param esExtremaPobreza Indica si el estudiante está en extrema pobreza.
+     * @param esDiscapacitado Indica si el estudiante tiene alguna discapacidad.
+     * @param esPrimerMiembroU Indica si el estudiante es el primer miembro en la universidad.
+     * @param esComunidadIndigena Indica si el estudiante pertenece a una comunidad indígena.
+     * @param actividadesExtra Actividades extra realizadas por el estudiante.
+     */
     public void actualizarDatosRequisito(boolean esPobre, boolean esNoPobre, boolean esExtremaPobreza,
             boolean esDiscapacitado, boolean esPrimerMiembroU, boolean esComunidadIndigena, String actividadesExtra) {
 
@@ -41,10 +55,15 @@ public class controlador_estudiante {
         datosEstudiante.setEsPrimerMiembroenU(esPrimerMiembroU);
         datosEstudiante.setEsComunidadIndigena(esComunidadIndigena);
         datosEstudiante.setActividad_extra(actividadesExtra);
-
-        
     }
 
+    /**
+     * Actualiza los datos personales del estudiante.
+     * @param nombreCompletoField Campo de texto para el nombre completo del estudiante.
+     * @param edadField Campo de texto para la edad del estudiante.
+     * @param correoField Campo de texto para el correo electrónico del estudiante.
+     * @param dniField Campo de texto para el DNI del estudiante.
+     */
     public void actualizarDatosPersonales(JTextField nombreCompletoField, JTextField edadField, JTextField correoField,
             JTextField dniField) {
         if (verificarCamposPersonales(nombreCompletoField, edadField, correoField, dniField)) {
@@ -71,9 +90,16 @@ public class controlador_estudiante {
                 JOptionPane.showMessageDialog(this.vistaPrincipal, "Ingrese los datos en el formato correcto.");
             }
         }
-
     }
 
+    /**
+     * Actualiza los datos académicos del estudiante.
+     * @param cicloField Campo de texto para el ciclo académico del estudiante.
+     * @param siObservado Radio button para indicar si el estudiante está observado.
+     * @param noObservado Radio button para indicar si el estudiante no está observado.
+     * @param codigoEstudianteField Campo de texto para el código del estudiante.
+     * @param promedioField Campo de texto para el promedio ponderado del estudiante.
+     */
     public void actualizarDatosAcademicos(JTextField cicloField, JRadioButton siObservado, JRadioButton noObservado,
             JTextField codigoEstudianteField, JTextField promedioField) {
         if (verificarCamposAcademicos(cicloField, siObservado, noObservado, codigoEstudianteField, promedioField)) {
@@ -93,14 +119,11 @@ public class controlador_estudiante {
                 // Depuramos si es que funciona
                 System.out.println("Estudiante actualizado: ");
                 vistaPrincipal.getLista().imprimir();
-
-                
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this.vistaPrincipal,
                         "Por favor, asegúrese de que todos los campos numéricos tengan el formato correcto.");
             }
         }
-
     }
 
     private boolean verificarCamposAcademicos(JTextField cicloField, JRadioButton siObservado, JRadioButton noObservado,
@@ -143,9 +166,16 @@ public class controlador_estudiante {
         return true;
     }
 
+    /**
+     * Verifica los campos personales del estudiante.
+     * @param nombreCompletoField Campo de texto para el nombre completo del estudiante.
+     * @param edadField Campo de texto para la edad del estudiante.
+     * @param correoField Campo de texto para el correo electrónico del estudiante.
+     * @param dniField Campo de texto para el DNI del estudiante.
+     * @return Verdadero si los campos personales son válidos, falso de lo contrario.
+     */
     public boolean verificarCamposPersonales(JTextField nombreCompletoField, JTextField edadField,
-            JTextField correoField,
-            JTextField dniField) {
+            JTextField correoField, JTextField dniField) {
         if (!esCampoTextoValido(nombreCompletoField, "[a-zA-Z\\s]+", "Por favor, ingrese nombres completos válidos.")) {
             return false;
         }
@@ -161,20 +191,26 @@ public class controlador_estudiante {
         }
         return true;
     }
-    
-        
-     public void abrirPDF(Estudiante estudiante) {
+
+    /**
+     * Abre el archivo PDF correspondiente al estudiante.
+     * @param estudiante El estudiante cuyo archivo PDF se abrirá.
+     */
+    public void abrirPDF(Estudiante estudiante) {
         if (Desktop.isDesktopSupported()) {
             try {
-                File myFile = new File("C:\\Users\\angel\\Desktop\\Reportes\\"+estudiante.getCodigo()+"_.pdf");
+                File myFile = new File("C:\\Users\\angel\\Desktop\\Reportes\\" + estudiante.getCodigo() + "_.pdf");
                 Desktop.getDesktop().open(myFile);
             } catch (IOException ex) {
-                
                 JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo: " + ex.getMessage());
             }
         }
     }
-     // Método para obtener la ruta
+
+    /**
+     * Método para obtener la ruta del archivo.
+     * @return La ruta del archivo.
+     */
     public String getRuta() {
         return ruta;
     }

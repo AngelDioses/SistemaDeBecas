@@ -7,31 +7,65 @@ package estructura;
 
 public class ListaEnlazadaDoble<T> implements Coleccionable<T>{
 
+    /**
+     * Nodo que representa el inicio de la lista.
+     */
     Nodo<T> inicio;
+    
+    /**
+     * Nodo que representa el final de la lista.
+     */
     Nodo<T> fin;
+    
+    /**
+     * Tamaño de la lista.
+     */
     private int tamaño;
+    
+    /**
+     * Constructor de la lista enlazada doble.
+     */
     public ListaEnlazadaDoble() {
         this.inicio = null;
         this.fin = null;
     }
-// Método para insertar al inicio
 
+     /**
+     * Obtiene el nodo de inicio de la lista.
+     * @return el nodo de inicio.
+     */
     public Nodo<T> getInicio() {
         return inicio;
     }
 
+    /**
+     * Obtiene el nodo final de la lista.
+     * @return el nodo final.
+     */
     public Nodo<T> getFin() {
         return fin;
     }
     
+    /**
+     * Obtiene el tamaño de la lista.
+     * @return el tamaño de la lista.
+     */
     public int getTamaño() {
         return tamaño;
     }
 
+     /**
+     * Establece el tamaño de la lista.
+     * @param tamaño el nuevo tamaño de la lista.
+     */
     public void setTamaño(int tamaño) {
         this.tamaño = tamaño;
     }
 
+     /**
+     * Inserta un elemento al inicio de la lista.
+     * @param elemento el elemento a insertar.
+     */
     public void insertarInicio(T elemento) {
         Nodo<T> nuevo = new Nodo<>(elemento);
         if (inicio == null) {
@@ -43,11 +77,16 @@ public class ListaEnlazadaDoble<T> implements Coleccionable<T>{
             inicio = nuevo;
         }
     }
-// Método para insertar al final
+
+    @Override
     public void insertar(T elemento){
         insertarFinal(elemento);
     }
 
+    /**
+     * Inserta un elemento al final de la lista.
+     * @param elemento el elemento a insertar.
+     */
     public void insertarFinal(T elemento) {
         Nodo<T> nuevo = new Nodo<>(elemento);
         if (inicio == null) {
@@ -61,7 +100,12 @@ public class ListaEnlazadaDoble<T> implements Coleccionable<T>{
         tamaño++;
     }
 
-// Método para insertar por posición
+     /**
+     * Inserta un elemento en la posición especificada.
+     * @param elemento el elemento a insertar.
+     * @param posicion la posición donde insertar el elemento.
+     * @throws Exception si la posición es inválida.
+     */
     public void insertarPorPosicion(T elemento, int posicion) throws Exception {
         if (posicion < 0) {
             throw new Exception("Posición inválida");
@@ -87,8 +131,12 @@ public class ListaEnlazadaDoble<T> implements Coleccionable<T>{
             actual.siguiente = nuevo;
         }
     }
-// Método para eliminar después de un valor
 
+     /**
+     * Elimina el nodo siguiente al nodo que contiene el elemento especificado.
+     * @param elemento el elemento después del cual eliminar.
+     * @throws Exception si el valor no se encuentra o es el último elemento.
+     */
     public void eliminarDespuesDe(T elemento) throws Exception {
         Nodo actual = inicio;
         while (actual != null && actual.elemento != elemento) {
@@ -107,6 +155,10 @@ public class ListaEnlazadaDoble<T> implements Coleccionable<T>{
         }
     }
 
+     /**
+     * Elimina el nodo que contiene el elemento especificado.
+     * @param elemento el elemento a eliminar.
+     */
     public void eliminar(T elemento) {
         Nodo<T> actual = inicio; // Comienza en la cabeza de la lista.
 
@@ -137,6 +189,13 @@ public class ListaEnlazadaDoble<T> implements Coleccionable<T>{
             actual.previo = (null);
         }
     }
+    
+     /**
+     * Obtiene el elemento en la posición especificada.
+     * @param indice el índice del elemento a obtener.
+     * @return el elemento en la posición especificada.
+     * @throws IndexOutOfBoundsException si el índice está fuera de rango.
+     */
     public T obtenerPorIndice(int indice) {
         if (indice < 0 || indice >= tamaño) {
             throw new IndexOutOfBoundsException("Índice fuera de rango: " + indice);
@@ -148,6 +207,11 @@ public class ListaEnlazadaDoble<T> implements Coleccionable<T>{
         return actual.elemento;
     }
 
+     /**
+     * Elimina el elemento en la posición especificada.
+     * @param posicion la posición del elemento a eliminar.
+     * @throws Exception si la posición es inválida o la lista está vacía.
+     */
     public void eliminarPorPosicion(int posicion) throws Exception {
         if (posicion < 0) {
             throw new Exception("Posición inválida");

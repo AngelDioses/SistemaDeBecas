@@ -15,7 +15,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
 
 public class PDFCombinador {
-    //Metodo para combinar los 5 pdfs (4 de sustento y 1 de reporte de estudiante)
+    /**
+     * Combina varios archivos PDF directamente.
+     * @param rutas la lista de rutas de los archivos PDF a combinar.
+     * @param estudiante el estudiante al que pertenecen los archivos.
+     */
      public void combinarPDFsDirectamente(ListaEnlazada<String> rutas, Estudiante estudiante) {
         try {
             /*Utilizamos la clase PDFM... de la libreria de PDFBox , 

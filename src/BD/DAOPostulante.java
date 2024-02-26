@@ -11,15 +11,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import model.Estudiante;
 
+/**
+ * Clase que maneja las operaciones de acceso a datos para los postulantes.
+ */
 public class DAOPostulante {
-    //Metodo para cargar los estudiantes de la BD a traves del uso de cualquier estructura que implemente el interface 'Coleccionable'
+    
+    /**
+     * Carga los estudiantes de la base de datos en una colección utilizando cualquier estructura que implemente el interface 'Coleccionable'.
+     * @param coleccionEstudiantes La colección donde se cargarán los estudiantes.
+     * @param sql_tbl La consulta SQL para obtener los estudiantes de la base de datos.
+     */
     public void cargarEstudiantesDeBD(Coleccionable<Estudiante> coleccionEstudiantes,
             String sql_tbl) {
-        //Establecemos conexion
+        // Establecemos conexión
         Conexion conexion1 = new Conexion();
 
         Connection conn = conexion1.getConnection();
-        //Si hay conexion
+        // Si hay conexión
         if (conexion1 != null) {
             try {
                 // Crear un Statement para ejecutar SQL
@@ -28,7 +36,7 @@ public class DAOPostulante {
                 // Ejecutamos una consulta SQL y procesamos los datos
                 ResultSet resultSet = statement.executeQuery(sql_tbl);
 
-                //Establecemos lo conseguido en la BD a los atributos de estudiantes
+                // Establecemos lo conseguido en la BD a los atributos de estudiantes
                 while (resultSet.next()) {
                     Estudiante estudiante = new Estudiante();
                     estudiante.setId(resultSet.getInt("id"));
@@ -52,17 +60,20 @@ public class DAOPostulante {
         }
        
     }
-    //Metodo para eliminarEstudiantes de la BD
     
+    /**
+     * Elimina un estudiante de la base de datos.
+     * @param estudiante El estudiante a eliminar.
+     */
     public void eliminarEstudianteEnBD(Estudiante estudiante) {
         Conexion conexionBD = new Conexion();
         Connection conn = conexionBD.getConnection(); // Obtiene la conexión a la BD
 
-        String sql = "DELETE FROM postulantes WHERE nombres = ?"; //Sentencia que atraves del campo nombre eliminaremos los postulantes
+        String sql = "DELETE FROM postulantes WHERE nombres = ?"; // Sentencia que a través del campo nombre eliminaremos los postulantes
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, estudiante.getNombres_completos()); // Ajusta este índice y método set según tu esquema de BD y tipo de dato
-            int filasAfectadas = pstmt.executeUpdate(); //Ejecutamos la eliminacion
+            int filasAfectadas = pstmt.executeUpdate(); // Ejecutamos la eliminación
 
             if (filasAfectadas > 0) {
                 System.out.println("Estudiante eliminado de la base de datos con éxito.");
@@ -80,10 +91,5 @@ public class DAOPostulante {
                 e.printStackTrace();
             }
         }
-    }
-   
-    
-
+    }  
 }
-// Consulta SQL
-
